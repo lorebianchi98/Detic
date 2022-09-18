@@ -4,9 +4,12 @@ import json
 import numpy as np
 from torch.nn import functional as F
 
+
+BASE_PATH = ''
+
 def load_class_freq(
-    path='datasets/metadata/lvis_v1_train_cat_info.json', freq_weight=1.0):
-    cat_info = json.load(open(path, 'r'))
+    path=BASE_PATH + 'datasets/metadata/lvis_v1_train_cat_info.json', freq_weight=1.0):
+    cat_info = json.load(open(BASE_PATH + path, 'r'))
     cat_info = torch.tensor(
         [c['image_count'] for c in sorted(cat_info, key=lambda x: x['id'])])
     freq_weight = cat_info.float() ** freq_weight
@@ -31,6 +34,7 @@ def get_fed_loss_inds(gt_classes, num_sample_cats, C, weight=None):
 
 def reset_cls_test(model, cls_path, num_classes):
     model.roi_heads.num_classes = num_classes
+    cls_path = BASE_PATH + cls_path
     if type(cls_path) == str:
         print('Resetting zs_weight', cls_path)
         zs_weight = torch.tensor(
