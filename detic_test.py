@@ -1,5 +1,4 @@
 import torch
-#import utilities
 # Some basic setup:
 # Setup detectron2 logger
 import detectron2
@@ -19,11 +18,9 @@ from detectron2.utils.visualizer import Visualizer
 from detectron2.data import MetadataCatalog, DatasetCatalog
 
 # Detic libraries
-print(sys.path[0])
-sys.path.append(os.path.join(sys.path[0],'third_party','CenterNet2'))
-sys.path.insert(0, 'Detic/third_party/CenterNet2')
-sys.path.insert(0, '/home/lorenzo/PycharmProjects/Detic')
-sys.path.insert(0, 'Detic')
+
+
+sys.path.insert(0, 'third_party/CenterNet2/')
 
 
 
