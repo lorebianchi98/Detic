@@ -68,11 +68,12 @@ reset_cls_test(predictor.model, classifier, num_classes)
 im = cv2.imread("desk.jpg")
 
 outputs = predictor(im)
-v = Visualizer(im[:, :, ::-1], metadata)
-out = v.draw_instance_predictions(outputs["instances"].to("cpu"))
+# uncomment in order to show the result
+# v = Visualizer(im[:, :, ::-1], metadata)
+# out = v.draw_instance_predictions(outputs["instances"].to("cpu"))
 
-cv2.imshow("desk",  out.get_image()[:, :, ::-1].astype("uint8"))
-cv2.waitKey()
+# cv2.imshow("desk",  out.get_image()[:, :, ::-1].astype("uint8"))
+# cv2.waitKey()
 
 print(outputs["instances"].pred_classes) # class index
 print([metadata.thing_classes[x] for x in outputs["instances"].pred_classes.cpu().tolist()]) # class names
